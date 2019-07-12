@@ -45,6 +45,8 @@ function createConnection() {
     ]
   };
 
+  console.log(pcConfig);
+
   window.localConnection = localConnection = new RTCPeerConnection(pcConfig);
   console.log('Created local peer connection object localConnection');
 
