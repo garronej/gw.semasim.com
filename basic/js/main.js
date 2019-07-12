@@ -31,10 +31,21 @@ function disableSendButton() {
   sendButton.disabled = true;
 }
 
+
 function createConnection() {
   dataChannelSend.placeholder = '';
-  const servers = null;
-  window.localConnection = localConnection = new RTCPeerConnection(servers);
+
+  const pcConfig = {
+    "iceServers": [
+      {
+        "urls": [
+          `stun:turn.dev.semasim.com:19302`,
+        ]
+      }
+    ]
+  };
+
+  window.localConnection = localConnection = new RTCPeerConnection(pcConfig);
   console.log('Created local peer connection object localConnection');
 
   sendChannel = localConnection.createDataChannel('sendDataChannel');
@@ -46,7 +57,7 @@ function createConnection() {
   sendChannel.onopen = onSendChannelStateChange;
   sendChannel.onclose = onSendChannelStateChange;
 
-  window.remoteConnection = remoteConnection = new RTCPeerConnection(servers);
+  window.remoteConnection = remoteConnection = new RTCPeerConnection(pcConfig);
   console.log('Created remote peer connection object remoteConnection');
 
   remoteConnection.onicecandidate = e => {
