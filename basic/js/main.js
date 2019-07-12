@@ -1,8 +1,4 @@
 
-declare const document: any;
-declare const window: any;
-declare const RTCPeerConnection: any;
-
 /*
  *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
  *
